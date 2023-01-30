@@ -16,7 +16,8 @@ public class MergeSort<T> {
         int middle = left + (right - left) / 2;
         sort(arr, left, middle);
         sort(arr, middle + 1, right);
-        merge(arr, left, middle, right);
+        if (arr[middle].compareTo(arr[middle + 1]) > 0)
+            merge(arr, left, middle, right);
     }
 
     // 合并两个有序的区间 arr[l, mid] 和 arr[mid + 1, r]
@@ -44,12 +45,13 @@ public class MergeSort<T> {
     }
 
     public static void main(String[] args) {
-        int n = 100000;
+        int n = 1000000;
         Integer[] arr = ArrayGenerator.generateRandomArray(n, n);
+        // Integer[] arr = ArrayGenerator.generateOrderedArray(n);
         Integer[] arr2 = Arrays.copyOf(arr, arr.length);
         Integer[] arr3 = Arrays.copyOf(arr, arr.length);
-        SortingHelper.sortTest("SelectionSort", arr);
-        SortingHelper.sortTest("InsertionSort", arr2);
+        // SortingHelper.sortTest("SelectionSort", arr);
+        // SortingHelper.sortTest("InsertionSort", arr2);
         SortingHelper.sortTest("MergeSort", arr3);
     }
 }
